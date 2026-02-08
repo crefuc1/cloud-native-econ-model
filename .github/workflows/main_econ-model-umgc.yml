@@ -10,6 +10,12 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  AZURE_WEBAPP_NAME: 'econ-model-umgc'
+  PYTHON_VERSION: '3.11'
+  STARTUP_COMMAND: 'gunicorn --bind=0.0.0.0:8000 --workers=1 --timeout=600 main:app'
+  WEBSITES_PORT: '8000'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -73,4 +79,6 @@ jobs:
         with:
           app-name: 'econ-model-umgc'
           slot-name: 'Production'
+          package: .
+
           
